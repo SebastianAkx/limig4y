@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro e Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            font-size: 2em;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: #fff;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #218838;
+        }
+        .img-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .img-container p {
+            font-size: 2em;
+            color: #333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="registerDiv">
+    <h2>Registro</h2>
+    <div class="form-group">
+        <label for="registerUsername">Usuario:</label>
+        <input type="text" id="registerUsername" placeholder="Ingrese usuario">
+    </div>
+    <div class="form-group">
+        <label for="registerPassword">Contraseña:</label>
+        <input type="password" id="registerPassword" placeholder="Ingrese contraseña">
+    </div>
+    <div class="form-group">
+        <button onclick="register()">Registrarse</button>
+    </div>
+</div>
+
+<div class="container hidden" id="loginDiv">
+    <h2>Iniciar Sesión</h2>
+    <div class="form-group">
+        <label for="loginUsername">Usuario:</label>
+        <input type="text" id="loginUsername" placeholder="Ingrese usuario">
+    </div>
+    <div class="form-group">
+        <label for="loginPassword">Contraseña:</label>
+        <input type="password" id="loginPassword" placeholder="Ingrese contraseña">
+    </div>
+    <div class="form-group">
+        <button onclick="login()">Iniciar sesión</button>
+    </div>
+</div>
+
+<div class="container hidden img-container" id="successDiv">
+    <img src="https://i.pinimg.com/originals/3e/c2/a4/3ec2a474e5d5aada829c894e3a5f1e82.gif" alt="GIF de éxito">
+    <p class="message">Mekiepo mekiepo, mekiepopo (Limi g4ay)</p>
+</div>
+
+<script>
+    let userData = {};
+
+    function register() {
+        const username = document.getElementById('registerUsername').value;
+        const password = document.getElementById('registerPassword').value;
+
+        if (username && password) {
+            userData.username = username;
+            userData.password = password;
+            document.getElementById('registerDiv').classList.add('hidden');
+            document.getElementById('loginDiv').classList.remove('hidden');
+        } else {
+            alert('Por favor, complete todos los campos.');
+        }
+    }
+
+    function login() {
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        if (username === userData.username && password === userData.password) {
+            document.getElementById('loginDiv').classList.add('hidden');
+            document.getElementById('successDiv').classList.remove('hidden');
+        } else {
+            alert('Usuario o contraseña incorrectos.');
+        }
+    }
+</script>
+
+</body>
+</html>
